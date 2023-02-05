@@ -11,18 +11,24 @@ let arr = [
     "Even now, your enemies are eagerly flipping through books.",
 ];
 
-const quote = document.querySelector("center .p")
-
-
+const quote = document.querySelector(".center p")
+let flag = false;
 
 function doRandomQote(arr_) {
     try {
-        let random = Math.floor(Math.random() * 10);
-        alert(arr_[random - 1])
-
+        let random = Math.floor(Math.random() * 9);
+        if (!arr_[random]) throw new Error("Нет элемента")
+        quote.textContent = (arr_[random])
+        if (!flag) {
+            quote.style = "color: white";
+            flag = true
+        } else {
+            quote.style = "color: red";
+            flag = false
+        }
     } catch (err) {
-        return err.message
+        console.log(err.message);
     }
 }
 
-setInterval(doRandomQote, 5000, arr);
+setInterval(doRandomQote, 2000, arr);
